@@ -1,0 +1,922 @@
+# Build Prompt — CloudNotes Frontend
+
+Build the frontend for a full-stack web application called **CloudNotes**.
+
+CloudNotes is a **digital diary + smart personal notes application**. The goal is to make it feel like a real personal notebook/diary that happens to have useful digital features — NOT like a generic SaaS product.
+
+---
+
+# 1. CORE DESIGN DIRECTION
+
+The most important instruction:
+
+**DO NOT DESIGN THIS AS A GENERIC SaaS LANDING PAGE OR ADMIN DASHBOARD.**
+
+The application should feel like:
+
+> **Opening a beautiful personal diary / journal on your desk.**
+
+The visual experience should have personality, warmth, subtle imperfections, and a sense of physical space.
+
+Think:
+
+* Personal diary
+* Modern journal
+* Annotated notebook
+* Desk/workspace
+* Paper pages
+* Sticky notes
+* Handwritten annotations
+* Bookmarks
+* Index tabs
+* Date stamps
+* Personal archive
+
+But do NOT make it look like a literal skeuomorphic notebook from the early 2010s.
+
+It should be a **modern digital interpretation of a physical diary**.
+
+---
+
+# 2. ABSOLUTELY AVOID
+
+Do NOT use the typical startup/SaaS visual language.
+
+Avoid:
+
+* Giant hero section
+* "Welcome to CloudNotes" marketing copy
+* Pricing cards
+* Testimonials
+* Gradient blobs
+* Purple/blue AI gradients
+* Glassmorphism everywhere
+* Floating dashboard cards
+* Excessive rounded rectangles
+* Generic sidebar + card grid SaaS layout
+* Huge statistics like "10K+ users"
+* Fake charts
+* Fake customer logos
+* "Powerful. Simple. Fast." marketing language
+* Generic AI sparkle icons everywhere
+* Excessive animations
+* Neon colors
+* Excessive shadows
+* Corporate enterprise aesthetic
+
+There should be **no marketing landing page**.
+
+The user should feel like they have opened their diary immediately.
+
+---
+
+# 3. APPLICATION ENTRY SCREEN
+
+When the user opens the application, do NOT show a landing page.
+
+Open directly into the diary.
+
+The initial screen should resemble an open journal.
+
+Example conceptual layout:
+
+```text
+┌──────────────────────────────────────────────────────────────┐
+│                         CLOUDNOTES                            │
+│                         September 2026                       │
+├──────────────────────────────┬───────────────────────────────┤
+│                              │                               │
+│       SEPTEMBER 9             │        Wednesday              │
+│                              │                               │
+│  Dear diary,                 │        Today's Notes           │
+│                              │                               │
+│  [Write something here...]  │                               │
+│                              │     + Add Note                │
+│                              │                               │
+│                              │                               │
+│                              │                               │
+│                              │                               │
+├──────────────────────────────┴───────────────────────────────┤
+│  ← Previous Page                         Next Page →          │
+└──────────────────────────────────────────────────────────────┘
+```
+
+This is only conceptual. Create a polished modern interpretation rather than literally copying this layout.
+
+---
+
+# 4. VISUAL STYLE
+
+Use a warm editorial aesthetic.
+
+Suggested visual direction:
+
+### Background
+
+A warm off-white / cream paper-like background.
+
+Example palette:
+
+* Paper: `#F7F3EA`
+* Slightly darker paper: `#EEE8DC`
+* Ink: `#272522`
+* Muted ink: `#777168`
+* Accent: muted burgundy / terracotta / forest green
+* Borders: subtle warm gray
+
+Do NOT use bright white backgrounds everywhere.
+
+Do NOT make everything beige either.
+
+Use restrained contrast.
+
+---
+
+# 5. TYPOGRAPHY
+
+Typography should reinforce the diary concept.
+
+Use a combination of:
+
+### Serif
+
+For:
+
+* Note titles
+* Dates
+* Section headings
+* Diary/journal elements
+
+### Clean sans-serif
+
+For:
+
+* Buttons
+* Metadata
+* Tags
+* Navigation
+* Forms
+
+Optionally use a subtle handwriting-style font ONLY for small accents such as:
+
+* "Remember this"
+* handwritten annotations
+* tiny personal labels
+
+Do NOT use handwriting fonts for the entire interface.
+
+The interface must remain highly readable.
+
+---
+
+# 6. MAIN DIARY EXPERIENCE
+
+The central interaction should be **writing a note**.
+
+Create a prominent but elegant:
+
+### `+ New Entry`
+
+button.
+
+When clicked, open a diary-style writing interface.
+
+The editor should feel like writing on a page rather than filling out a SaaS form.
+
+Example:
+
+```text
+September 9, 2026
+Wednesday
+
+────────────────────────────────────
+
+Title
+
+____________________________________
+
+Start writing...
+
+____________________________________
+____________________________________
+____________________________________
+____________________________________
+
+
+Type       Note
+Category   College
+Priority   ● Medium
+Tags       + Add tag
+
+
+                 Save Entry
+```
+
+Avoid a huge floating modal with excessive rounded corners.
+
+Prefer:
+
+* page transition
+* paper sheet
+* slide-in journal page
+* or an elegant writing canvas
+
+---
+
+# 7. NOTE TYPES
+
+When creating an entry, allow the user to select:
+
+### Note
+
+For normal thoughts/information.
+
+### Task
+
+For something that needs to be completed.
+
+### Reminder
+
+For something to remember at a particular date/time.
+
+### Idea
+
+For random ideas and concepts.
+
+The UI should visually distinguish these subtly.
+
+For example:
+
+```text
+NOTE
+TASK
+REMINDER
+IDEA
+```
+
+Use small typographic labels rather than huge colorful cards.
+
+---
+
+# 8. NOTE METADATA
+
+When creating a note, allow:
+
+* Title
+* Content
+* Type
+* Category
+* Priority
+* Tags
+* Due date
+* Optional reminder time
+
+Categories:
+
+* Personal
+* College
+* Work
+* Projects
+* Ideas
+* Other
+
+Priority:
+
+* Low
+* Medium
+* High
+
+Do not make these feel like database fields.
+
+Make them feel like **little pieces of information attached to a journal entry**.
+
+---
+
+# 9. DIARY INDEX
+
+Create an "Index" or "Archive" experience.
+
+Instead of a boring:
+
+```text
+All Notes
+Recent Notes
+```
+
+sidebar, create something resembling the index of a notebook.
+
+Example:
+
+```text
+INDEX
+
+September
+────────────
+
+09  AWS Assignment
+08  DBMS Revision
+07  Project Idea
+05  Personal
+03  Weekend Plans
+```
+
+Clicking an entry opens that diary page.
+
+This is an important part of the design.
+
+---
+
+# 10. CALENDAR / TIMELINE
+
+Include a subtle date navigation system.
+
+Possible interaction:
+
+```text
+September 2026
+
+MON  TUE  WED  THU  FRI  SAT  SUN
+     1    2    3    4    5    6
+7    8    9    10   11   12   13
+14   15   16   17   18   19   20
+```
+
+Dates containing notes should have a subtle indicator.
+
+Clicking a date opens that day's entries.
+
+This should feel like browsing a diary, not using Google Calendar.
+
+---
+
+# 11. SEARCH
+
+Add search, but keep it visually integrated.
+
+Instead of:
+
+```text
+[ Search notes...................... ]
+```
+
+use something like:
+
+```text
+⌕ Search the diary
+```
+
+When activated, allow searching:
+
+* Title
+* Content
+* Tags
+* Categories
+
+Search results should resemble index entries.
+
+Example:
+
+```text
+SEARCH RESULTS
+
+3 entries found
+
+09 SEP
+AWS Assignment
+"...deploy the application on EC2..."
+
+05 SEP
+Cloud Computing
+"...EC2 instances provide..."
+
+```
+
+---
+
+# 12. SMART RULE-BASED FEATURES
+
+This application does NOT require an LLM.
+
+Implement the frontend assuming the backend will contain simple rule-based intelligence.
+
+For example:
+
+If a note is:
+
+```text
+Type = Task
+Priority = High
+Due Date = Tomorrow
+```
+
+display:
+
+```text
+HIGH PRIORITY
+Due tomorrow
+```
+
+If the due date has passed:
+
+```text
+OVERDUE
+```
+
+If completed:
+
+```text
+✓ COMPLETED
+```
+
+The UI should make these states visually understandable without becoming a productivity-dashboard clone.
+
+---
+
+# 13. REALISTIC DIARY DETAILS
+
+Add small details that make the application feel believable.
+
+Examples:
+
+### Date stamp
+
+```text
+SEP 09 2026
+```
+
+### Page number
+
+```text
+PAGE 042
+```
+
+### Bookmark
+
+A subtle bookmark indicating the current section.
+
+### Paper texture
+
+Extremely subtle.
+
+Do NOT use a distracting image texture.
+
+### Margin
+
+A faint vertical diary margin.
+
+### Page divider
+
+Subtle horizontal rules.
+
+### Small annotations
+
+Occasional tiny labels such as:
+
+```text
+Important
+Remember
+Idea
+```
+
+These should be restrained.
+
+---
+
+# 14. NOTE VIEW
+
+Opening a note should feel like opening a specific diary page.
+
+Example:
+
+```text
+September 9, 2026
+
+AWS Assignment
+────────────────────────────────────
+
+Need to deploy the CloudNotes
+application on an Ubuntu EC2 instance.
+
+Things to remember:
+
+• Configure SSH
+• Configure Security Group
+• Deploy Node backend
+• Test public IP
+
+────────────────────────────────────
+
+COLLEGE · AWS · CLOUD
+
+Priority: HIGH
+
+                         PAGE 042
+```
+
+Provide actions:
+
+```text
+Edit
+Archive
+Delete
+Pin
+```
+
+but keep them visually secondary to the content.
+
+---
+
+# 15. TASK NOTES
+
+Task notes should feel slightly different.
+
+Example:
+
+```text
+September 9
+
+AWS Assignment
+
+☐ Create EC2 instance
+☐ Configure SSH
+☐ Deploy backend
+☐ Configure Security Group
+☐ Submit screenshots
+
+Due:
+September 13
+
+Priority:
+HIGH
+```
+
+The checkbox interaction should be satisfying and clear.
+
+---
+
+# 16. PINNED ENTRIES
+
+Pinned notes can use a subtle bookmark metaphor.
+
+For example:
+
+```text
+📌 Pinned
+```
+
+or an actual bookmark-shaped UI element.
+
+Pinned entries should appear in a small section called:
+
+**Bookmarks**
+
+rather than simply "Pinned Notes".
+
+This reinforces the diary metaphor.
+
+---
+
+# 17. ARCHIVE
+
+Archived notes should feel like old diary pages.
+
+Create an archive section:
+
+```text
+ARCHIVE
+
+2026
+
+September
+August
+July
+June
+```
+
+Allow users to browse archived entries by month.
+
+---
+
+# 18. RESPONSIVE DESIGN
+
+The application must work properly on:
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+On mobile, do NOT simply shrink the desktop layout.
+
+Transform the diary experience.
+
+For example:
+
+```text
+┌──────────────────────┐
+│ CLOUDNOTES       ☰   │
+├──────────────────────┤
+│                      │
+│ September 9          │
+│                      │
+│ AWS Assignment       │
+│                      │
+│ Need to deploy...    │
+│                      │
+│                      │
+│ + New Entry          │
+│                      │
+└──────────────────────┘
+```
+
+---
+
+# 19. ANIMATIONS
+
+Use subtle animations only.
+
+Good:
+
+* Page transition
+* Book/page opening effect
+* Fade
+* Slight slide
+* Checkbox animation
+* Bookmark interaction
+
+Bad:
+
+* Excessive bouncing
+* Floating elements
+* Constant motion
+* Parallax everywhere
+* Loading animations for no reason
+
+The application should feel calm.
+
+---
+
+# 20. INTERACTION PRINCIPLE
+
+The app should feel like:
+
+> **"I am opening my personal digital diary."**
+
+NOT:
+
+> **"I am managing my SaaS productivity workspace."**
+
+Every design decision should be evaluated against this principle.
+
+---
+
+# 21. TECHNICAL REQUIREMENTS
+
+Build the frontend so that it can later connect to a Node.js + Express backend.
+
+Do NOT hardcode the application around mock-only data.
+
+Create clean service functions such as:
+
+```javascript
+getNotes()
+getNote(id)
+createNote(data)
+updateNote(id, data)
+deleteNote(id)
+searchNotes(query)
+```
+
+Initially, you may use mock/local data so the UI can be demonstrated.
+
+Keep API interaction isolated from UI components so we can replace mock data with REST API calls later.
+
+---
+
+# 22. EXPECTED BACKEND API CONTRACT
+
+Design the frontend assuming these endpoints will exist:
+
+```text
+GET    /api/notes
+GET    /api/notes/:id
+POST   /api/notes
+PUT    /api/notes/:id
+DELETE /api/notes/:id
+
+PATCH  /api/notes/:id/complete
+PATCH  /api/notes/:id/pin
+PATCH  /api/notes/:id/archive
+
+GET    /api/notes/search?q=...
+```
+
+The frontend should not assume the backend implementation.
+
+---
+
+# 23. COMPONENT STRUCTURE
+
+Organize the frontend into reusable components.
+
+Suggested structure:
+
+```text
+src/
+
+components/
+    DiaryShell
+    DiaryPage
+    DiaryHeader
+    NewEntryButton
+    NoteEditor
+    NoteView
+    NoteCard
+    DiaryIndex
+    Calendar
+    Search
+    Tag
+    PriorityBadge
+    TaskChecklist
+    Bookmark
+    Archive
+
+pages/
+    Diary
+    Entry
+    Archive
+    Search
+
+services/
+    notesApi
+
+data/
+    mockNotes
+
+styles/
+```
+
+Adapt this structure to the chosen framework.
+
+---
+
+# 24. EMPTY STATES
+
+Do NOT use generic:
+
+> "No data found."
+
+Make empty states feel human.
+
+Example:
+
+```text
+This page is still blank.
+
+Every diary starts somewhere.
+
+                + Write your first entry
+```
+
+For search:
+
+```text
+Nothing in the diary matches that.
+
+Try another word.
+```
+
+For archive:
+
+```text
+No old pages yet.
+
+They'll collect here over time.
+```
+
+---
+
+# 25. SAMPLE DATA
+
+Use realistic sample notes.
+
+NOT:
+
+```text
+Test Note 1
+Lorem ipsum
+```
+
+Use:
+
+```text
+AWS Assignment
+
+Need to deploy CloudNotes on EC2.
+Remember to configure the Security Group
+and test the public IP before Sunday.
+
+Type: Task
+Category: College
+Priority: High
+Due: September 13
+Tags: AWS, Cloud, College
+```
+
+Other examples:
+
+```text
+Project Idea
+
+What if notes could automatically turn
+into tasks based on the user's chosen type?
+
+Type: Idea
+Category: Projects
+Tags: Product, Ideas
+```
+
+```text
+DBMS Revision
+
+Need to revise BCNF, normalization,
+functional dependencies and ER mapping.
+
+Type: Note
+Category: College
+Priority: Medium
+```
+
+---
+
+# 26. ACCESSIBILITY
+
+Ensure:
+
+* Proper contrast
+* Keyboard navigation
+* Visible focus states
+* Semantic HTML
+* Labels for form inputs
+* Buttons have accessible names
+* Mobile touch targets are large enough
+
+Do not sacrifice usability for aesthetics.
+
+---
+
+# 27. FINAL QUALITY BAR
+
+Before considering the frontend complete, check:
+
+### Visual
+
+* Does it look like a diary?
+* Does it avoid generic SaaS styling?
+* Does it have a strong visual identity?
+* Does the typography feel editorial?
+* Does the interface feel calm and personal?
+
+### Functional
+
+* Can I create a note?
+* Can I edit it?
+* Can I delete it?
+* Can I mark a task complete?
+* Can I pin it?
+* Can I archive it?
+* Can I search?
+* Can I filter?
+* Can I browse by date?
+
+### Responsive
+
+* Desktop works
+* Tablet works
+* Mobile works
+
+### Backend readiness
+
+* API functions are separated from UI
+* Data model is clearly defined
+* Mock data can later be replaced by REST API calls
+
+---
+
+# 28. MOST IMPORTANT INSTRUCTION
+
+**Do not over-design this.**
+
+The novelty should come from the **diary interaction model**, not from throwing 50 visual effects onto the screen.
+
+The finished application should make someone think:
+
+> "Oh, this is a digital diary."
+
+not:
+
+> "This is another Tailwind SaaS dashboard."
+
+Build a polished, realistic, production-quality frontend with strong attention to typography, spacing, hierarchy, interaction, and the physical metaphor of a diary.
+
+The application should open directly into the diary experience rather than presenting a marketing page.

@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "CloudNotes"
+description = "A warm digital diary and personal notes app that lets people write, browse, search, and organize entries through a calm journal-like experience."
+version = "1.0.0"
+id = "artifacts/cloudnotes"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18300
+
+[services.development]
+run = "pnpm --filter @workspace/cloudnotes run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/cloudnotes", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/cloudnotes/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18300"
+BASE_PATH = "/"
