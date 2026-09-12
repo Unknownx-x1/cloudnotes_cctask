@@ -158,6 +158,39 @@ export const getNotes = (): Note[] => [...read()].sort((a, b) => b.date.localeCo
 
 export const getNote = (id: string): Note | undefined => read().find((note) => note.id === id);
 
+export const syncNotesWithBackend = async (): Promise<Note[]> => {
+  try {
+    const res = await fetch('/api/notes');
+    if (res.ok) {
+      const serverNotes: Note[] = await res.json();
+      if (Array.isArray(serverNotes) && serverNotes.length > 0) {
+        const notesWithPages = serverNotes.map((note, index) => ({
+          ...note,
+          pageNumber: note.pageNumber || (serverNotes.length - index),
+        }));
+        write(notesWithPages);
+        return getNotes();
+      } else if (Array.isArray(serverNotes) && serverNotes.length === 0) {
+        // Seed starter notes into backend
+        for (const note of starterNotes) {
+          try {
+            await fetch('/api/notes', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(note),
+            });
+          } catch {
+            // ignore seed failure
+          }
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('Backend sync unavailable, using local storage:', err);
+  }
+  return getNotes();
+};
+
 export const createNote = (input: Omit<Note, 'id' | 'pageNumber'>): Note => {
   const notes = read();
   const note: Note = {
@@ -166,6 +199,13 @@ export const createNote = (input: Omit<Note, 'id' | 'pageNumber'>): Note => {
     pageNumber: Math.max(0, ...notes.map((item) => item.pageNumber)) + 1,
   };
   write([note, ...notes]);
+
+  fetch('/api/notes', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(note),
+  }).catch((err) => console.warn('Failed to save to backend:', err));
+
   return note;
 };
 
@@ -173,11 +213,22 @@ export const updateNote = (id: string, changes: Partial<Note>): Note | undefined
   const notes = read();
   const updated = notes.map((note) => (note.id === id ? { ...note, ...changes } : note));
   write(updated);
+
+  fetch(`/api/notes/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(changes),
+  }).catch((err) => console.warn('Failed to update in backend:', err));
+
   return updated.find((note) => note.id === id);
 };
 
 export const deleteNote = (id: string) => {
   write(read().filter((note) => note.id !== id));
+
+  fetch(`/api/notes/${id}`, {
+    method: 'DELETE',
+  }).catch((err) => console.warn('Failed to delete in backend:', err));
 };
 
 export const searchNotes = (query: string, notes = getNotes()): Note[] => {

@@ -47,3 +47,10 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Database and Secrets
+*.db
+notes.db
+.env
+.env.*
+!.env.example

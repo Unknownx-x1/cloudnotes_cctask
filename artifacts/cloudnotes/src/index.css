@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @plugin "@tailwindcss/typography";
@@ -79,71 +79,83 @@
   --elevate-1: rgba(0, 0, 0, 0.03);
   --elevate-2: rgba(0, 0, 0, 0.08);
 
-  --background: 42 37% 94%;
+  /* Warm Italian Laid Parchment */
+  --background: 38 45% 95%;
 
-  --foreground: 25 28% 18%;
+  /* Dark Walnut Fountain Pen Ink */
+  --foreground: 22 44% 12%;
 
-  --border: 35 21% 81%;
+  /* Hand-torn Parchment Edge Border */
+  --border: 34 26% 82%;
 
-  --card: 40 43% 97%;
+  /* Pure Cream Laid Page */
+  --card: 40 55% 98%;
 
-  --card-foreground: 25 28% 18%;
+  --card-foreground: 22 44% 12%;
 
-  --card-border: 35 21% 81%;
+  --card-border: 34 26% 82%;
 
-  --sidebar: 34 32% 89%;
+  /* Antique Stitched Saddle/Chestnut Leather Cover */
+  --sidebar: 20 52% 11%;
 
-  --sidebar-foreground: 25 28% 18%;
+  --sidebar-foreground: 38 60% 90%;
 
-  --sidebar-border: 35 21% 81%;
+  --sidebar-border: 20 40% 20%;
 
-  --sidebar-primary: 351 34% 31%;
+  --sidebar-primary: 38 72% 52%;
 
-  --sidebar-primary-foreground: 40 43% 97%;
+  --sidebar-primary-foreground: 20 52% 11%;
 
-  --sidebar-accent: 37 39% 83%;
+  --sidebar-accent: 20 38% 18%;
 
-  --sidebar-accent-foreground: 25 28% 18%;
+  --sidebar-accent-foreground: 38 60% 92%;
 
-  --sidebar-ring: 351 34% 31%;
+  --sidebar-ring: 38 72% 52%;
 
-  --popover: 40 43% 97%;
+  --popover: 40 55% 98%;
 
-  --popover-foreground: 25 28% 18%;
+  --popover-foreground: 22 44% 12%;
 
-  --popover-border: 35 21% 81%;
+  --popover-border: 34 26% 82%;
 
-  --primary: 351 34% 31%;
+  /* Royal Burgundy / Crimson Wax Seal */
+  --primary: 354 62% 31%;
 
-  --primary-foreground: 40 43% 97%;
+  --primary-foreground: 40 55% 98%;
 
-  --secondary: 37 39% 83%;
+  /* Aged Parchment Tag */
+  --secondary: 36 34% 87%;
 
-  --secondary-foreground: 25 28% 18%;
+  --secondary-foreground: 22 44% 12%;
 
-  --muted: 35 28% 89%;
+  --muted: 36 28% 90%;
 
-  --muted-foreground: 25 12% 44%;
+  /* Vintage Sepia Wash Ink */
+  --muted-foreground: 24 18% 44%;
 
-  --accent: 157 21% 34%;
+  /* Botanical Library Evergreen */
+  --accent: 154 36% 27%;
 
-  --accent-foreground: 40 43% 97%;
+  --accent-foreground: 40 55% 98%;
 
-  --destructive: 3 49% 43%;
+  --destructive: 358 68% 40%;
 
-  --destructive-foreground: 40 43% 97%;
+  --destructive-foreground: 40 55% 98%;
 
-  --input: 35 21% 81%;
-  --ring: 351 34% 31%;
-  --chart-1: 351 34% 31%;
-  --chart-2: 157 21% 34%;
-  --chart-3: 29 67% 58%;
-  --chart-4: 38 38% 67%;
-  --chart-5: 25 28% 18%;
+  --input: 34 26% 82%;
+  --ring: 38 72% 52%;
+  --chart-1: 354 62% 31%;
+  --chart-2: 154 36% 27%;
+  --chart-3: 38 72% 52%;
+  --chart-4: 20 52% 11%;
+  --chart-5: 22 44% 12%;
 
-  --app-font-sans: 'DM Sans', sans-serif;
-  --app-font-serif: 'Libre Baskerville', Georgia, serif;
+  --app-font-sans: 'Plus Jakarta Sans', sans-serif;
+  --app-font-serif: 'Cormorant Garamond', Georgia, serif;
+  --app-font-reading: 'Newsreader', Georgia, serif;
   --app-font-mono: 'Space Mono', monospace;
+  --app-font-handwriting: 'Caveat', cursive;
+  --app-font-display: 'Cinzel', serif;
   --radius: 0.5rem; /* 8px */
   --shadow-2xs: 0px 1px 0px 0px hsl(25 28% 18% / 0.04);
   --shadow-xs: 0px 2px 4px 0px hsl(25 28% 18% / 0.05);
@@ -323,21 +335,80 @@
 
 @layer utilities {
   .font-journal { font-family: var(--app-font-serif); }
+  .font-reading { font-family: var(--app-font-reading); }
   .font-ui { font-family: var(--app-font-sans); }
   .font-mono-note { font-family: var(--app-font-mono); }
+  .font-handwriting { font-family: var(--app-font-handwriting); }
+  .font-display { font-family: var(--app-font-display); }
+
+  /* Authentic tactile paper grain */
   .paper-grain {
-    background-image: radial-gradient(hsl(25 28% 18% / 0.04) 0.6px, transparent 0.6px);
-    background-size: 7px 7px;
+    background-color: #faf5eb;
+    background-image: 
+      radial-gradient(rgba(45, 27, 18, 0.055) 0.75px, transparent 0.75px),
+      linear-gradient(to right, rgba(0,0,0,0.012) 1px, transparent 1px);
+    background-size: 8px 8px, 48px 48px;
   }
+
+  /* Deep Walnut & Leather desk mat background */
+  .desk-wood {
+    background: radial-gradient(circle at 50% 20%, #291b14 0%, #170e0a 70%, #0d0705 100%);
+  }
+
+  /* Ruled diary notebook paper lines */
   .ruled-paper {
-    background-image: linear-gradient(to bottom, transparent 31px, hsl(35 21% 81% / 0.62) 32px);
-    background-size: 100% 32px;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      rgba(165, 135, 105, 0.18) 31px,
+      rgba(165, 135, 105, 0.18) 32px
+    );
   }
-  .margin-rule { border-left: 1px solid hsl(3 49% 43% / 0.2); }
-  .page-in { animation: page-in 500ms cubic-bezier(.22,.61,.36,1) both; }
-  .fade-up { animation: fade-up 600ms cubic-bezier(.22,.61,.36,1) both; }
-  .fade-up-delay { animation: fade-up 600ms 100ms cubic-bezier(.22,.61,.36,1) both; }
-  .fade-up-delay-2 { animation: fade-up 600ms 180ms cubic-bezier(.22,.61,.36,1) both; }
+
+  /* Authentic Red Margin line on vintage notebooks */
+  .margin-rule {
+    border-left: 2px solid rgba(195, 60, 60, 0.28);
+  }
+
+  /* Hardcover Stitched Leather Journal Spine & Cover */
+  .leather-spine {
+    background: linear-gradient(135deg, #32180e 0%, #221008 55%, #140904 100%);
+    box-shadow: inset -4px 0 12px rgba(0, 0, 0, 0.6), inset 1px 0 0 rgba(220, 160, 60, 0.12);
+  }
+
+  .leather-stitching {
+    border-right: 2px dashed rgba(218, 165, 32, 0.35);
+  }
+
+  /* 3D realistic stacked deckle book edge */
+  .deckle-book {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      2px 2px 0 #ede5d5,
+      4px 4px 0 #e4dac8,
+      6px 6px 0 #dcd0bc,
+      12px 18px 36px rgba(18, 10, 6, 0.4);
+  }
+
+  /* Silk Bookmark Ribbon */
+  .silk-ribbon {
+    background: linear-gradient(135deg, #a8242b 0%, #751419 100%);
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Wax Seal Stamp */
+  .wax-seal {
+    box-shadow: 
+      inset 0 1px 2px rgba(255, 255, 255, 0.4),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.4),
+      0 2px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .page-in { animation: page-in 450ms cubic-bezier(.22,.61,.36,1) both; }
+  .fade-up { animation: fade-up 550ms cubic-bezier(.22,.61,.36,1) both; }
+  .fade-up-delay { animation: fade-up 550ms 100ms cubic-bezier(.22,.61,.36,1) both; }
+  .fade-up-delay-2 { animation: fade-up 550ms 180ms cubic-bezier(.22,.61,.36,1) both; }
 }
 
 @keyframes page-in {
