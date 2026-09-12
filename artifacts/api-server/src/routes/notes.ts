@@ -37,7 +37,8 @@ router.get("/", (_req, res) => {
 router.get("/:id", (req, res) => {
   const row = getNoteById(req.params.id);
   if (!row) {
-    return res.status(404).json({ error: "Note not found" });
+    res.status(404).json({ error: "Note not found" });
+    return;
   }
   res.json(formatNote(row));
 });
@@ -47,7 +48,8 @@ router.post("/", (req, res) => {
   const { title, content, type, category, priority, tags, date } = req.body;
 
   if (!title || !content) {
-    return res.status(400).json({ error: "Title and content are required." });
+    res.status(400).json({ error: "Title and content are required." });
+    return;
   }
 
   const newNote: NoteRow = {
@@ -88,7 +90,8 @@ router.put("/:id", (req, res) => {
 
   const updated = updateNoteInDb(id, updates);
   if (!updated) {
-    return res.status(404).json({ error: "Note not found" });
+    res.status(404).json({ error: "Note not found" });
+    return;
   }
 
   res.json(formatNote(updated));
@@ -98,7 +101,8 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
   const success = deleteNoteFromDb(req.params.id);
   if (!success) {
-    return res.status(404).json({ error: "Note not found" });
+    res.status(404).json({ error: "Note not found" });
+    return;
   }
   res.json({ success: true, message: `Note ${req.params.id} deleted.` });
 });
