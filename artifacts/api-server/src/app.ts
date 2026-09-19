@@ -36,9 +36,10 @@ app.use("/api", router);
 
 // Serve static frontend build if present
 const candidatePaths = [
+  path.resolve(process.cwd(), "public"),
+  path.resolve(process.cwd(), "dist/public"),
   path.resolve(process.cwd(), "../cloudnotes/dist/public"),
   path.resolve(process.cwd(), "artifacts/cloudnotes/dist/public"),
-  path.resolve(process.cwd(), "dist/public"),
 ];
 
 for (const staticDir of candidatePaths) {

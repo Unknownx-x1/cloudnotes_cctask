@@ -1,8 +1,16 @@
 import { DatabaseSync } from "node:sqlite";
 import path from "path";
+import fs from "fs";
 
-// Locate notes.db in the backend folder
-const dbPath = path.resolve(process.cwd(), "notes.db");
+// Locate notes.db in the backend folder or from DB_PATH env var
+const dbPath = process.env.DB_PATH || path.resolve(process.cwd(), "notes.db");
+
+// Ensure directory exists if custom path provided (e.g. /data/notes.db)
+const dbDir = path.dirname(dbPath);
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
+
 const db = new DatabaseSync(dbPath);
 
 // Create the notes table if it does not exist

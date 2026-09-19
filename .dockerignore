@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+dist
+dist/public
+out-tsc
+
+# Version Control & IDEs
+.git
+.gitignore
+.vscode
+.idea
+
+# Local databases and secrets
+*.db
+notes.db
+.env
+.env.*
+!.env.example
+
+# Temporary and log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache
+.local
+
+# Project assets and replit metadata
+attached_assets
+.replit
+.replitignore
+.conversation
